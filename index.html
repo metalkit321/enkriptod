@@ -3,20 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Selamat Datang</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <title>Cyberpunk Welcome</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #0f0f0f, #1a1a2e);
+      background: radial-gradient(circle at center, #0f0f0f, #050505);
       color: #00fff7;
       font-family: 'Orbitron', sans-serif;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
       overflow: hidden;
+    }
+
+    .logo {
+      font-size: 3.5rem;
+      color: #ff00f7;
+      text-shadow: 0 0 5px #ff00f7, 0 0 20px #ff00f7, 0 0 40px #00fff7;
+      margin-bottom: 40px;
+      animation: pulse 2s infinite ease-in-out;
     }
 
     .container {
@@ -24,35 +33,81 @@
       padding: 40px;
       border: 2px solid #00fff7;
       border-radius: 16px;
-      box-shadow: 0 0 25px #00fff7, 0 0 60px #ff00f7 inset;
       background-color: rgba(10, 10, 10, 0.7);
-      animation: flicker 2s infinite;
+      box-shadow: 0 0 25px #00fff7, 0 0 60px #ff00f7 inset;
     }
 
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      text-shadow: 0 0 5px #00fff7, 0 0 15px #ff00f7;
+    h1.glitch {
+      font-size: 2.5rem;
+      color: #00fff7;
+      position: relative;
+      animation: glitch 1s infinite;
+    }
+
+    h1.glitch::before,
+    h1.glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      color: #ff00f7;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    h1.glitch::before {
+      animation: glitchTop 1s infinite linear;
+    }
+
+    h1.glitch::after {
+      animation: glitchBottom 1s infinite linear;
     }
 
     p {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: #ff00f7;
       text-shadow: 0 0 5px #ff00f7;
+      margin-top: 20px;
     }
 
-    @keyframes flicker {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.95; }
-      80% { opacity: 1; }
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 10px #ff00f7, 0 0 20px #00fff7; }
+      50% { text-shadow: 0 0 30px #ff00f7, 0 0 50px #00fff7; }
+    }
+
+    @keyframes glitch {
+      0% { transform: none; }
+      20% { transform: skew(-0.5deg, -0.5deg); }
+      40% { transform: skew(0.5deg, 0.5deg); }
+      60% { transform: skew(-1deg, 0deg); }
+      80% { transform: skew(0.5deg, -1deg); }
+      100% { transform: none; }
+    }
+
+    @keyframes glitchTop {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      10% { clip: rect(0, 9999px, 20px, 0); transform: translate(-2px, -2px); }
+      20% { clip: rect(0, 9999px, 0, 0); transform: none; }
+      30% { clip: rect(10px, 9999px, 25px, 0); transform: translate(2px, 1px); }
+      100% { clip: rect(0, 9999px, 0, 0); transform: none; }
+    }
+
+    @keyframes glitchBottom {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      10% { clip: rect(30px, 9999px, 60px, 0); transform: translate(2px, 2px); }
+      20% { clip: rect(0, 9999px, 0, 0); transform: none; }
+      30% { clip: rect(40px, 9999px, 60px, 0); transform: translate(-1px, -1px); }
+      100% { clip: rect(0, 9999px, 0, 0); transform: none; }
     }
   </style>
 </head>
 <body>
 
+  <div class="logo">☣ CYBERZONE ☣</div>
+
   <div class="container">
-    <h1>🚀 Selamat Datang di Dunia Cyberpunk</h1>
-    <p>Neon terang, bayangan gelap — siap menjelajah?</p>
+    <h1 class="glitch" data-text="Selamat Datang, NetRunner!">Selamat Datang, NetRunner!</h1>
+    <p>Neon menyala, kegelapan memanggil.</p>
   </div>
 
 </body>
